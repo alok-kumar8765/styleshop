@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&#l03^#l0f4!d5+0_x!5jvxc#)@rm*9c(2$-ux*z1btf$+))i@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['12.0.0.1','styleshopx.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['12.0.0.1','styleshopx.herokuapp.com/']
 INSTALLED_APPS = [
     'app',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.whiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,6 +137,18 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_HOST = 'smtp.gmail.com'
 #EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
-#EMAIL_HOST_USER = ''
-#EMAIL_HOST_PASSWORD = ''
+#EMAIL_HOST_USER = 'alok.kaushal.93@gmail.com'
+#EMAIL_HOST_PASSWORD = '*AK123AK*'
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+#REST_FRAMEWORK ={
+    #'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
+#}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication', 
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}

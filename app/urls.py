@@ -1,13 +1,16 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import path
+from django.urls import path,include
 from django.utils.translation import templatize
 from app import views
 from django.conf import settings
 from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm,MySetPasswordForm
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from app import views
 
 urlpatterns = [
+    
+    #path('api/',include('app.api.urls')),
     #path("password_reset", views.password_reset_request, name="password_reset"),
     #path('', views.home),#for function based view
     path('',views.ProductView.as_view(),name='home'),
